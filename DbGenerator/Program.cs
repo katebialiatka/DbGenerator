@@ -47,11 +47,15 @@ namespace CosmosDbDataGenerator
 
             try
             {
+                var sampleBaseName = "sampleName";
+                var repoOwner = "yuryklyshevich";
+                var repoId = "Istest4";
                 List<Task> taskCollection = new List<Task>();
                 for (int i = 0; i < itemCount; i++)
                 {
-                    var item = new Sample($"sampleId{i}", "yuryklyshevich", "Istest4", $"manifestName{i}",
-                        $"sampleName{i}",
+                    var sampleName = $"{sampleBaseName}{i}";
+                    var sampleId = $"{repoOwner}={repoId}={sampleName}";
+                    var item = new Sample(sampleId, repoOwner, repoId, $"manifestName{i}", sampleName,
                         new Author[] {new Author("test2Id", "Ivan Ivanov"), new Author("test1Id", "Yury Klyshevich"),},
                         null,
                         null, $"sampleDescription{i}", new[] {"java"}, $"urlFragment{i}", new[] {"azure"},
