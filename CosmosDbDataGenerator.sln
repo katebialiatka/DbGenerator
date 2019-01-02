@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosmosDbDataGenerator", "CosmosDbDataGenerator\CosmosDbDataGenerator.csproj", "{EA7CD1B4-CE44-47C8-805E-1F75B5740A79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbGenerator", "DbGenerator\CosmosDbDataGenerator.csproj", "{EA7CD1B4-CE44-47C8-805E-1F75B5740A79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
