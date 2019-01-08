@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using DataModel;
 using IngestionService.Common.Facades.DbFacade;
@@ -18,6 +19,7 @@ namespace CosmosDbDataGenerator
 
             CosmosDbFacade dbFacade;
             int itemCount;
+            int initValue;
             try
             {
                var builder = new ConfigurationBuilder()
@@ -37,6 +39,7 @@ namespace CosmosDbDataGenerator
                 dbFacade = new CosmosDbFacade(documentClient, databaseName, collectionName);
 
                 itemCount = int.Parse(configuration["ITEM_COUNT"]);
+                initValue = int.Parse(configuration["START_NUMBER"]);
             }
             catch (CosmosDbException ex)
             {
@@ -51,7 +54,8 @@ namespace CosmosDbDataGenerator
                 var repoOwner = "yuryklyshevich";
                 var repoId = "Istest4";
                 List<Task> taskCollection = new List<Task>();
-                for (int i = 0; i < itemCount; i++)
+                
+                for (int i = initValue; i < initValue + itemCount; i++)
                 {
                     var sampleName = $"{sampleBaseName}{i}";
                     var sampleId = $"{repoOwner}={repoId}={sampleName}";
@@ -69,7 +73,7 @@ namespace CosmosDbDataGenerator
                 }
 
                 Console.WriteLine($"Waiting to finish processing.");
-                taskCollection.ForEach(x => x.Wait());
+                Task.WaitAll(taskCollection.ToArray());
                 Console.WriteLine($"Processing is finished.");
             }
             catch (Exception ex)
